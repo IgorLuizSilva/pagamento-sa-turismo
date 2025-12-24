@@ -29,7 +29,6 @@
             background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, #020617 100%);
             min-height: 100vh;
         }
-        /* Removidas animações para evitar tela branca/travamento */
     </style>
 </head>
 <body class="text-gray-800 antialiased p-4 md:p-8">
@@ -224,8 +223,8 @@
     </div>
 
     <script>
-    // --- JUROS CONFIG (2% ao mês) ---
-    const TAXA_JUROS_MENSAL = 0.02; 
+    // --- JUROS CONFIG (0.37% ao mês) ---
+    const TAXA_JUROS_MENSAL = 0.0037; 
     // --------------------------------
 
     // Função que roda assim que o site carrega
@@ -294,7 +293,6 @@
         let valorExibicao = "Consultar Agência";
 
         if (valorUrl) {
-            // Limpa tudo, aceita '1500', '1.500,00'
             const limpo = valorUrl.replace(/[^0-9,.]/g, '');
             valorExibicao = "R$ " + limpo;
             const valorParaCalculo = limpo.replace(/\./g, '').replace(',', '.');
@@ -314,7 +312,7 @@
                     const parc = (valorNum / i).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                     txt = `${i}x de R$ ${parc} (Sem Juros)`;
                 } else {
-                    // Juros 2% a.m
+                    // Juros (0.37% a.m)
                     const montante = valorNum * Math.pow((1 + TAXA_JUROS_MENSAL), i);
                     const valorParcelaComJuros = montante / i;
                     
