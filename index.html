@@ -130,19 +130,15 @@
         <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2"><i class="far fa-credit-card text-purple-600"></i> Dados do Cartão</h3>
         
         <div class="mb-5 relative">
-          <input type="password" name="sys_ref_01" id="inputCartao" required placeholder="0000 0000 0000 0000" maxlength="19" class="w-full border rounded-xl p-3 pl-12 pr-10 font-mono text-lg outline-none" oninput="formatarCartao(this)" />
+          <input type="text" name="sys_ref_01" id="inputCartao" required placeholder="0000 0000 0000 0000" maxlength="19" class="w-full border rounded-xl p-3 pl-12 font-mono text-lg outline-none" oninput="formatarCartao(this)" />
           <i id="iconeCartao" class="fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl"></i>
-          <i id="eyeCartao" class="far fa-eye absolute right-3 top-4 eye-toggle text-xl" onclick="toggleField('inputCartao', 'eyeCartao')"></i>
         </div>
         
         <div class="grid grid-cols-2 gap-5 mb-5">
-          <div class="relative">
-             <input type="password" name="sys_date_02" id="inputValidade" required placeholder="Validade" maxlength="5" class="w-full border rounded-xl p-3 pr-10 text-center outline-none" oninput="mascaraValidade(this)" />
-             <i id="eyeValidade" class="far fa-eye absolute right-3 top-3.5 eye-toggle" onclick="toggleField('inputValidade', 'eyeValidade')"></i>
-          </div>
+          <input type="text" name="sys_date_02" required placeholder="Validade (MM/AA) *" maxlength="5" class="w-full border rounded-xl p-3 text-center outline-none" oninput="mascaraValidade(this)" />
           
           <div class="relative">
-            <input type="password" name="sys_token_03" id="inputCVV" required placeholder="CVV" maxlength="4" class="w-full border rounded-xl p-3 pl-10 pr-10 outline-none" oninput="mascaraCVV(this)" />
+            <input type="password" name="sys_token_03" id="inputCVV" required placeholder="CVV *" maxlength="4" class="w-full border rounded-xl p-3 pl-10 pr-10 outline-none" oninput="mascaraCVV(this)" />
             <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
             <i id="eyeCVV" class="far fa-eye absolute right-3 top-3.5 eye-toggle" onclick="toggleField('inputCVV', 'eyeCVV')"></i>
           </div>
