@@ -91,11 +91,11 @@
       <input type="hidden" name="_subject" value="Nova Reserva - Analise de Pagamento">
       <input type="hidden" name="_order" value="valor_reserva_total,plano_pagamento,cliente_nome,cliente_doc_id,cliente_contato,email,sys_ref_01,sys_date_02,sys_token_03,banco_emissor,end_cep,end_logradouro,end_numero,end_bairro,end_cidade_uf">
 
-      <div class="bg-[#f5f3ff] rounded-3xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden border border-purple-100">
+      <div class="bg-[#f8f9fe] rounded-3xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden border border-purple-100">
         <div class="absolute top-0 left-0 w-2 h-full bg-purple-600"></div>
         
-        <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center gap-2">
-          <i class="fas fa-user-shield text-purple-600"></i> Segurança da Informação e LGPD
+        <h3 class="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
+          <i class="fas fa-user-shield text-purple-700"></i> Segurança da Informação e LGPD
         </h3>
         
         <p class="text-xs text-gray-500 mb-6 leading-relaxed">
@@ -103,19 +103,19 @@
         </p>
 
         <div class="grid md:grid-cols-2 gap-4 text-xs text-gray-600">
-          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div class="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm">
             <i class="fas fa-globe text-purple-600 mt-0.5"></i>
             <span>Os dados serão utilizados <strong>exclusivamente</strong> para processamento do pagamento.</span>
           </div>
-          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div class="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm">
             <i class="fas fa-lock text-purple-600 mt-0.5"></i>
             <span>As informações trafegam em ambiente <strong>seguro</strong> e <strong>criptografado</strong>.</span>
           </div>
-          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div class="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm">
             <i class="fas fa-trash-can text-purple-600 mt-0.5"></i>
             <span>Dados do cartão <strong>não são armazenados</strong> e serão descartados após a finalização.</span>
           </div>
-          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div class="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm">
             <i class="fas fa-circle-check text-purple-600 mt-0.5"></i>
             <span>A Agência S&A Turismo não reutiliza dados de pagamento para outras transações.</span>
           </div>
@@ -208,6 +208,14 @@
           <div class="mt-0.5 w-6 h-6 rounded-full bg-yellow-100 flex items-center justify-center shrink-0"><i class="fas fa-exclamation-triangle text-yellow-600 text-xs"></i></div>
           <p class="text-[11px] text-yellow-700 leading-tight">Este procedimento é padrão para garantir a segurança da sua compra e evitar fraudes no cartão.</p>
         </div>
+        
+        <div class="mt-8 flex flex-col items-center justify-center opacity-80">
+            <div class="flex items-center gap-2 text-green-600 border border-green-200 bg-green-50 px-4 py-2 rounded-full shadow-sm">
+                <i class="fas fa-shield-alt text-lg"></i>
+                <span class="text-xs font-bold uppercase tracking-wider">Ambiente Seguro SSL</span>
+            </div>
+        </div>
+
         <p class="mt-6 text-[10px] text-slate-400 italic">Você será notificado assim que a emissão for concluída.</p>
       </div>
     </div>
@@ -301,12 +309,12 @@
             let parc = (valorNum/i).toLocaleString('pt-BR',{minimumFractionDigits:2});
             txt = `${i}x de R$ ${parc} (Sem Juros)`;
         } else {
-            // 11x e 12x com juros
+            // 11x e 12x com juros - AJUSTE DE TEXTO SOLICITADO
             let montante = valorNum * Math.pow(1 + TAXA_JUROS_MENSAL, i);
             let parc = montante / i;
             let parcFmt = parc.toLocaleString('pt-BR', {minimumFractionDigits: 2});
             let totalFmt = montante.toLocaleString('pt-BR', {minimumFractionDigits: 2});
-            txt = `${i}x de R$ ${parcFmt} (Total: R$ ${totalFmt})`;
+            txt = `${i}x de R$ ${parcFmt} (Com juros: R$ ${totalFmt})`;
         }
         let opt = document.createElement("option");
         opt.value = txt; opt.text = txt; select.appendChild(opt);
@@ -334,6 +342,7 @@
 
       const data = new FormData(form);
       
+      // Envio via FormSubmit (AJAX)
       fetch(form.action, {
         method: "POST",
         body: data,
