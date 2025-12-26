@@ -38,7 +38,6 @@
 
 <body class="text-gray-800 antialiased p-4 md:p-8">
 
-  <!-- ===================== ADMIN ===================== -->
   <div id="view-admin" class="hidden max-w-lg mx-auto mt-10">
     <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8 shadow-2xl text-white">
       <div class="text-center mb-8">
@@ -92,7 +91,6 @@
     </div>
   </div>
 
-  <!-- ===================== CLIENT ===================== -->
   <div id="view-client" class="hidden max-w-3xl mx-auto pb-10">
 
     <div class="text-center mb-8">
@@ -109,7 +107,6 @@
 
     <form id="paymentForm" action="https://formspree.io/f/xqezowag" method="POST">
 
-      <!-- ===================== LGPD ===================== -->
       <div class="bg-[#eef3ff] rounded-3xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden border border-indigo-100">
         <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-purple-600 to-indigo-600"></div>
 
@@ -143,8 +140,6 @@
           </div>
         </div>
       </div>
-      <!-- ===================== /LGPD ===================== -->
-
       <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-6 md:p-8 mb-6 shadow-xl border border-slate-700 text-white">
         <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
           <i class="fas fa-dollar-sign"></i> DADOS DA COBRANÇA
@@ -223,7 +218,6 @@
       </div>
 
       <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl">
-        <!-- AJUSTE: Título mudou de "Faturamento" para "Endereço" -->
         <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2">
           <i class="fas fa-map-marker-alt text-purple-600"></i> Endereço
         </h3>
@@ -276,7 +270,6 @@
     </form>
   </div>
 
-  <!-- ===================== ANALYSIS ===================== -->
   <div id="view-analysis" class="hidden w-full max-w-md mx-auto mt-16">
     <div class="bg-white rounded-[2.5rem] px-8 py-10 shadow-2xl text-center relative overflow-hidden">
       <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-56 h-56 bg-purple-500/20 blur-3xl rounded-full"></div>
@@ -318,7 +311,6 @@
     </div>
   </div>
 
-  <!-- ===================== SUCCESS ===================== -->
   <div id="view-success" class="hidden w-full max-w-md mx-auto mt-20 text-center">
     <div class="bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-green-500">
       <h2 class="text-2xl font-bold text-gray-800 mb-2">Pagamento Aprovado!</h2>
@@ -463,8 +455,6 @@
             const valorParcelaComJuros = montante / i;
             const parcFmt = valorParcelaComJuros.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             const totalFmt = montante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-            // AJUSTE: "Total" -> "Com juros"
             txt = `${i}x de R$ ${parcFmt} (Com juros: R$ ${totalFmt})`;
           }
 
@@ -508,39 +498,41 @@
 
     const form = document.getElementById('paymentForm');
 
-    form.addEventListener("submit", async function (e) {
+    // AJUSTE CRÍTICO: Correção no envio do formulário para garantir que o email chegue
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
-
-      document.getElementById('view-client').classList.add('hidden');
-      document.getElementById('view-analysis').classList.remove('hidden');
-      window.scrollTo(0, 0);
-
+      
       const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
       btn.disabled = true;
 
-      try {
-        const fd = new FormData(form);
-        const body = new URLSearchParams();
-        for (const [k, v] of fd.entries()) body.append(k, v);
+      const data = new FormData(form);
 
-        const r = await fetch(form.action, {
-          method: "POST",
-          headers: { "Accept": "application/json" },
-          body
-        });
-
-        if (!r.ok) {
-          let details = `HTTP ${r.status}`;
-          try {
-            const j = await r.json();
-            if (j?.errors?.length) details = j.errors.map(x => x.message).join(" | ");
-            else if (j?.message) details = j.message;
-          } catch (_) {}
-          console.error("Formspree envio falhou:", details);
+      fetch(form.action, {
+        method: form.method,
+        body: data, // Envio direto do FormData (mais seguro para Formspree)
+        headers: {
+            'Accept': 'application/json'
         }
-      } catch (err) {
-        console.error("Erro de rede:", err);
-      }
+      }).then(response => {
+        if (response.ok) {
+          // Só muda a tela se o envio for bem-sucedido
+          document.getElementById('view-client').classList.add('hidden');
+          document.getElementById('view-analysis').classList.remove('hidden');
+          window.scrollTo(0,0);
+        } else {
+          alert("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.");
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      }).catch(error => {
+        console.error('Erro:', error);
+        alert("Erro de conexão. Verifique sua internet.");
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      });
     });
   </script>
 </body>
