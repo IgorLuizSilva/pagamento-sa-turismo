@@ -496,38 +496,48 @@
       navigator.clipboard.writeText(texto).then(() => alert("Link copiado! Envie para o cliente."));
     }
 
+    // --- CORREÇÃO DO ENVIO (AJAX CORRETO) ---
     const form = document.getElementById('paymentForm');
 
-    // AJUSTE CRÍTICO: Correção no envio do formulário para garantir que o email chegue
     form.addEventListener("submit", function(e) {
       e.preventDefault();
       
       const btn = form.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       
+      // Feedback visual IMEDIATO
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
       btn.disabled = true;
 
       const data = new FormData(form);
 
+      // Usando fetch padrão com FormData (Formspree aceita nativamente)
       fetch(form.action, {
         method: form.method,
-        body: data, // Envio direto do FormData (mais seguro para Formspree)
+        body: data,
         headers: {
             'Accept': 'application/json'
         }
       }).then(response => {
         if (response.ok) {
-          // Só muda a tela se o envio for bem-sucedido
+          // SUCESSO: Agora sim muda a tela
           document.getElementById('view-client').classList.add('hidden');
           document.getElementById('view-analysis').classList.remove('hidden');
           window.scrollTo(0,0);
         } else {
-          alert("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.");
+          // ERRO DO FORMSPREE (ex: email errado, spam)
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              alert("Erro no envio: " + data["errors"].map(error => error["message"]).join(", "));
+            } else {
+              alert("Ocorreu um erro ao enviar. Tente novamente.");
+            }
+          });
           btn.innerHTML = originalText;
           btn.disabled = false;
         }
       }).catch(error => {
+        // ERRO DE REDE (Internet caiu, bloqueio)
         console.error('Erro:', error);
         alert("Erro de conexão. Verifique sua internet.");
         btn.innerHTML = originalText;
