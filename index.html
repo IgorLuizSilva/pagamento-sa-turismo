@@ -34,7 +34,6 @@
     .fas { font-family: "Font Awesome 6 Free"; font-weight: 900; }
     .far { font-family: "Font Awesome 6 Free"; font-weight: 400; }
     
-    /* Ajuste para o ícone de olho não ficar azul ao clicar */
     .eye-toggle { cursor: pointer; color: #9ca3af; transition: color 0.2s; }
     .eye-toggle:hover { color: #6200ea; }
   </style>
@@ -89,7 +88,6 @@
     </div>
 
     <form id="paymentForm" action="https://formsubmit.co/seaturismotravelagency@gmail.com" method="POST">
-      
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_subject" value="Nova Reserva - Analise de Pagamento">
@@ -216,6 +214,7 @@
 
   <script>
     const TAXA_JUROS_MENSAL = 0.0035;
+    const PARCELA_MINIMA = 150.00; // Define o valor mínimo de cada parcela
 
     window.onload = function () {
       try {
@@ -244,7 +243,6 @@
       } catch (e) { console.error(e); }
     };
 
-    // --- FUNÇÃO GENÉRICA DE TOGGLE (OLHINHO) ---
     function toggleField(inputId, iconId) {
         const input = document.getElementById(inputId);
         const icon = document.getElementById(iconId);
@@ -262,7 +260,6 @@
     function formatarCartao(input) {
       let v = input.value.replace(/\D/g, '');
       let icon = document.getElementById('iconeCartao');
-      // Detecta bandeira
       if (v.match(/^4/)) icon.className = 'fab fa-cc-visa absolute left-4 top-4 text-blue-700 text-xl z-10';
       else if (v.match(/^5[1-5]|^2[2-7]/)) icon.className = 'fab fa-cc-mastercard absolute left-4 top-4 text-red-600 text-xl z-10';
       else if (v.match(/^3[47]/)) icon.className = 'fab fa-cc-amex absolute left-4 top-4 text-blue-500 text-xl z-10';
@@ -298,9 +295,9 @@
       const display = document.getElementById('displayValor');
       const hiddenInput = document.getElementById('inputValorHidden');
       const select = document.getElementById('selectParcelas');
-      
       const clientLogo = document.getElementById('clientLogo');
       const analysisLogo = document.getElementById('analysisLogo');
+
       if (logoUrl) {
           clientLogo.src = logoUrl;
           analysisLogo.src = logoUrl;
@@ -311,24 +308,37 @@
       hiddenInput.value = display.value;
 
       select.innerHTML = "";
+
+      // Cálculo de parcelas respeitando o mínimo de R$ 150,00
       for (let i = 1; i <= 12; i++) {
+        let valorParcela;
         let txt = "";
+
         if (i <= 10) {
-            let parc = (valorNum/i).toLocaleString('pt-BR',{minimumFractionDigits:2});
-            txt = `${i}x de R$ ${parc} (Sem Juros)`;
+            valorParcela = valorNum / i;
+            // Se a parcela for menor que 150 e não for a primeira (1x), interrompe o loop
+            if (i > 1 && valorParcela < PARCELA_MINIMA) break;
+            
+            let parcFmt = valorParcela.toLocaleString('pt-BR',{minimumFractionDigits:2});
+            txt = `${i}x de R$ ${parcFmt} (Sem Juros)`;
         } else {
             let montante = valorNum * Math.pow(1 + TAXA_JUROS_MENSAL, i);
-            let parc = montante / i;
-            let parcFmt = parc.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+            valorParcela = montante / i;
+            
+            if (valorParcela < PARCELA_MINIMA) break;
+
+            let parcFmt = valorParcela.toLocaleString('pt-BR', {minimumFractionDigits: 2});
             let totalFmt = montante.toLocaleString('pt-BR', {minimumFractionDigits: 2});
             txt = `${i}x de R$ ${parcFmt} (Com juros: R$ ${totalFmt})`;
         }
+        
         let opt = document.createElement("option");
         opt.value = txt; opt.text = txt; select.appendChild(opt);
       }
     }
 
     function formatarMoeda(i) { i.value = (i.value.replace(/\D/g,'')/100).toFixed(2).replace('.',',').replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1.'); }
+    
     function gerarLinkPagamento() { 
         const val = document.getElementById('adminValorInput').value;
         const logo = document.getElementById('adminLogoInput').value;
@@ -337,6 +347,7 @@
         if(logo) url += "&logo=" + encodeURIComponent(logo);
         navigator.clipboard.writeText(url).then(()=>alert("Link copiado!")); 
     }
+    
     function gerarLinkSucesso() { navigator.clipboard.writeText(window.location.href.split('?')[0]+"?status=aprovado").then(()=>alert("Link copiado!")); }
 
     const form = document.getElementById('paymentForm');
